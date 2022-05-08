@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x94049DF8099B915B",
+      "boundary_crc": "0x94049DF8F18FCBA5",
       "device": "xczu7ev-ffvc1156-2-e",
       "gen_directory": "../../../../zfirst.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -13,15 +13,15 @@
     "design_tree": {
       "clock_gen": "",
       "master_reset": "",
-      "button_up": "",
-      "axi4_lite_master_0": "",
       "uart": "",
       "periph_interconnect": "",
-      "fifo_to_uart": "",
       "controller_0": "",
+      "axi_gpio_0": "",
+      "button_up": "",
+      "axi4_lite_master_0": "",
+      "fifo_to_uart": "",
       "button_down": "",
       "fifo_to_axi4lite": "",
-      "axi_gpio_0": "",
       "vcontroller_0": ""
     },
     "ports": {
@@ -34,8 +34,7 @@
             "value_src": "default"
           },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
+            "value": "125000000"
           },
           "FREQ_TOLERANCE_HZ": {
             "value": "0",
@@ -60,8 +59,7 @@
             "value_src": "default"
           },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
+            "value": "125000000"
           },
           "FREQ_TOLERANCE_HZ": {
             "value": "0",
@@ -164,6 +162,178 @@
         "parameters": {
           "RESET_BOARD_INTERFACE": {
             "value": "reset"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "uart": {
+        "vlnv": "xilinx.com:ip:axi_uartlite:2.0",
+        "xci_name": "design_1_axi_uartlite_0_0",
+        "xci_path": "ip\\design_1_axi_uartlite_0_0\\design_1_axi_uartlite_0_0.xci",
+        "inst_hier_path": "uart",
+        "parameters": {
+          "C_BAUDRATE": {
+            "value": "115200"
+          },
+          "C_S_AXI_ACLK_FREQ_HZ": {
+            "value": "125000000"
+          },
+          "C_S_AXI_ACLK_FREQ_HZ_d": {
+            "value": "125"
+          },
+          "UARTLITE_BOARD_INTERFACE": {
+            "value": "Custom"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "periph_interconnect": {
+        "vlnv": "xilinx.com:ip:smartconnect:1.0",
+        "xci_name": "design_1_smartconnect_0_0",
+        "xci_path": "ip\\design_1_smartconnect_0_0\\design_1_smartconnect_0_0.xci",
+        "inst_hier_path": "periph_interconnect",
+        "parameters": {
+          "NUM_MI": {
+            "value": "2"
+          },
+          "NUM_SI": {
+            "value": "3"
+          }
+        },
+        "interface_ports": {
+          "S00_AXI": {
+            "mode": "Slave",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "1"
+              }
+            },
+            "bridges": [
+              "M00_AXI",
+              "M01_AXI"
+            ]
+          },
+          "S01_AXI": {
+            "mode": "Slave",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "1"
+              }
+            },
+            "bridges": [
+              "M00_AXI",
+              "M01_AXI"
+            ]
+          },
+          "S02_AXI": {
+            "mode": "Slave",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "NUM_READ_OUTSTANDING": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "1"
+              }
+            },
+            "bridges": [
+              "M00_AXI",
+              "M01_AXI"
+            ]
+          },
+          "M00_AXI": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "MAX_BURST_LENGTH": {
+                "value": "1"
+              },
+              "NUM_READ_OUTSTANDING": {
+                "value": "1"
+              },
+              "NUM_READ_THREADS": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "1"
+              },
+              "NUM_WRITE_THREADS": {
+                "value": "1"
+              },
+              "RUSER_BITS_PER_BYTE": {
+                "value": "0"
+              },
+              "SUPPORTS_NARROW_BURST": {
+                "value": "0"
+              },
+              "WUSER_BITS_PER_BYTE": {
+                "value": "0"
+              }
+            }
+          },
+          "M01_AXI": {
+            "mode": "Master",
+            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "parameters": {
+              "MAX_BURST_LENGTH": {
+                "value": "1"
+              },
+              "NUM_READ_OUTSTANDING": {
+                "value": "1"
+              },
+              "NUM_READ_THREADS": {
+                "value": "1"
+              },
+              "NUM_WRITE_OUTSTANDING": {
+                "value": "1"
+              },
+              "NUM_WRITE_THREADS": {
+                "value": "1"
+              },
+              "RUSER_BITS_PER_BYTE": {
+                "value": "0"
+              },
+              "SUPPORTS_NARROW_BURST": {
+                "value": "0"
+              },
+              "WUSER_BITS_PER_BYTE": {
+                "value": "0"
+              }
+            }
+          }
+        }
+      },
+      "controller_0": {
+        "vlnv": "xilinx.com:hls:controller:1.0",
+        "xci_name": "design_1_controller_0_0",
+        "xci_path": "ip\\design_1_controller_0_0\\design_1_controller_0_0.xci",
+        "inst_hier_path": "controller_0"
+      },
+      "axi_gpio_0": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "xci_name": "design_1_axi_gpio_0_0",
+        "xci_path": "ip\\design_1_axi_gpio_0_0\\design_1_axi_gpio_0_0.xci",
+        "inst_hier_path": "axi_gpio_0",
+        "parameters": {
+          "GPIO_BOARD_INTERFACE": {
+            "value": "Custom"
           },
           "USE_BOARD_FLOW": {
             "value": "true"
@@ -492,158 +662,6 @@
           }
         }
       },
-      "uart": {
-        "vlnv": "xilinx.com:ip:axi_uartlite:2.0",
-        "xci_name": "design_1_axi_uartlite_0_0",
-        "xci_path": "ip\\design_1_axi_uartlite_0_0\\design_1_axi_uartlite_0_0.xci",
-        "inst_hier_path": "uart",
-        "parameters": {
-          "C_BAUDRATE": {
-            "value": "115200"
-          },
-          "C_S_AXI_ACLK_FREQ_HZ": {
-            "value": "125000000"
-          },
-          "C_S_AXI_ACLK_FREQ_HZ_d": {
-            "value": "125"
-          },
-          "UARTLITE_BOARD_INTERFACE": {
-            "value": "Custom"
-          },
-          "USE_BOARD_FLOW": {
-            "value": "true"
-          }
-        }
-      },
-      "periph_interconnect": {
-        "vlnv": "xilinx.com:ip:smartconnect:1.0",
-        "xci_name": "design_1_smartconnect_0_0",
-        "xci_path": "ip\\design_1_smartconnect_0_0\\design_1_smartconnect_0_0.xci",
-        "inst_hier_path": "periph_interconnect",
-        "parameters": {
-          "NUM_MI": {
-            "value": "2"
-          },
-          "NUM_SI": {
-            "value": "3"
-          }
-        },
-        "interface_ports": {
-          "S00_AXI": {
-            "mode": "Slave",
-            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "parameters": {
-              "NUM_READ_OUTSTANDING": {
-                "value": "1"
-              },
-              "NUM_WRITE_OUTSTANDING": {
-                "value": "1"
-              }
-            },
-            "bridges": [
-              "M00_AXI",
-              "M01_AXI"
-            ]
-          },
-          "S01_AXI": {
-            "mode": "Slave",
-            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "parameters": {
-              "NUM_READ_OUTSTANDING": {
-                "value": "1"
-              },
-              "NUM_WRITE_OUTSTANDING": {
-                "value": "1"
-              }
-            },
-            "bridges": [
-              "M00_AXI",
-              "M01_AXI"
-            ]
-          },
-          "S02_AXI": {
-            "mode": "Slave",
-            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "parameters": {
-              "NUM_READ_OUTSTANDING": {
-                "value": "1"
-              },
-              "NUM_WRITE_OUTSTANDING": {
-                "value": "1"
-              }
-            },
-            "bridges": [
-              "M00_AXI",
-              "M01_AXI"
-            ]
-          },
-          "M00_AXI": {
-            "mode": "Master",
-            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "parameters": {
-              "MAX_BURST_LENGTH": {
-                "value": "1"
-              },
-              "NUM_READ_OUTSTANDING": {
-                "value": "1"
-              },
-              "NUM_READ_THREADS": {
-                "value": "1"
-              },
-              "NUM_WRITE_OUTSTANDING": {
-                "value": "1"
-              },
-              "NUM_WRITE_THREADS": {
-                "value": "1"
-              },
-              "RUSER_BITS_PER_BYTE": {
-                "value": "0"
-              },
-              "SUPPORTS_NARROW_BURST": {
-                "value": "0"
-              },
-              "WUSER_BITS_PER_BYTE": {
-                "value": "0"
-              }
-            }
-          },
-          "M01_AXI": {
-            "mode": "Master",
-            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "parameters": {
-              "MAX_BURST_LENGTH": {
-                "value": "1"
-              },
-              "NUM_READ_OUTSTANDING": {
-                "value": "1"
-              },
-              "NUM_READ_THREADS": {
-                "value": "1"
-              },
-              "NUM_WRITE_OUTSTANDING": {
-                "value": "1"
-              },
-              "NUM_WRITE_THREADS": {
-                "value": "1"
-              },
-              "RUSER_BITS_PER_BYTE": {
-                "value": "0"
-              },
-              "SUPPORTS_NARROW_BURST": {
-                "value": "0"
-              },
-              "WUSER_BITS_PER_BYTE": {
-                "value": "0"
-              }
-            }
-          }
-        }
-      },
       "fifo_to_uart": {
         "vlnv": "xilinx.com:module_ref:fifo_to_uart:1.0",
         "xci_name": "design_1_fifo_to_uart_0_0",
@@ -939,12 +957,6 @@
             }
           }
         }
-      },
-      "controller_0": {
-        "vlnv": "xilinx.com:hls:controller:1.0",
-        "xci_name": "design_1_controller_0_0",
-        "xci_path": "ip\\design_1_controller_0_0\\design_1_controller_0_0.xci",
-        "inst_hier_path": "controller_0"
       },
       "button_down": {
         "vlnv": "xilinx.com:module_ref:button:1.0",
@@ -1300,20 +1312,6 @@
           }
         }
       },
-      "axi_gpio_0": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "xci_name": "design_1_axi_gpio_0_0",
-        "xci_path": "ip\\design_1_axi_gpio_0_0\\design_1_axi_gpio_0_0.xci",
-        "inst_hier_path": "axi_gpio_0",
-        "parameters": {
-          "GPIO_BOARD_INTERFACE": {
-            "value": "Custom"
-          },
-          "USE_BOARD_FLOW": {
-            "value": "true"
-          }
-        }
-      },
       "vcontroller_0": {
         "vlnv": "xilinx.com:module_ref:vcontroller:1.0",
         "xci_name": "design_1_vcontroller_0_0",
@@ -1479,15 +1477,15 @@
         "ports": [
           "clock_gen/CLK125",
           "master_reset/slowest_sync_clk",
-          "button_up/CLK",
-          "axi4_lite_master_0/M_AXI_ACLK",
           "uart/s_axi_aclk",
           "periph_interconnect/aclk",
-          "fifo_to_uart/M_AXI_ACLK",
           "controller_0/ap_clk",
+          "axi_gpio_0/s_axi_aclk",
+          "button_up/CLK",
+          "axi4_lite_master_0/M_AXI_ACLK",
+          "fifo_to_uart/M_AXI_ACLK",
           "button_down/CLK",
           "fifo_to_axi4lite/M_AXI_ACLK",
-          "axi_gpio_0/s_axi_aclk",
           "vcontroller_0/CLK"
         ]
       },
@@ -1512,17 +1510,17 @@
       "master_reset_interconnect_aresetn": {
         "ports": [
           "master_reset/interconnect_aresetn",
-          "axi4_lite_master_0/M_AXI_ARESETN",
-          "periph_interconnect/aresetn"
+          "periph_interconnect/aresetn",
+          "axi4_lite_master_0/M_AXI_ARESETN"
         ]
       },
       "master_reset_peripheral_aresetn": {
         "ports": [
           "master_reset/peripheral_aresetn",
           "uart/s_axi_aresetn",
+          "axi_gpio_0/s_axi_aresetn",
           "fifo_to_uart/M_AXI_ARESETN",
           "fifo_to_axi4lite/M_AXI_ARESETN",
-          "axi_gpio_0/s_axi_aresetn",
           "vcontroller_0/RESETN"
         ]
       },
