@@ -1,5 +1,5 @@
 @echo off
-set project=zcu104_demo
+set project=zfirst
 git add %project%.gen
 git add %project%.hw
 git add %project%.ip_user_files
