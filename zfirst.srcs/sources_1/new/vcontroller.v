@@ -10,6 +10,12 @@ module vcontroller#
     input   wire[33:0] AMCI_MISO,    // AMCI Master In, Slave Out
     //==========================================================================
 
+    // User reads from this FIFO to receive data from the UART
+    (* X_INTERFACE_MODE = "master" *)
+    (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 RECV_FIFO RD_DATA" *) input[7:0] RECV_DATA,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 RECV_FIFO EMPTY_N" *) input      RECV_EMPTY_N,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 RECV_FIFO RD_EN"   *) output     RECV_RDEN,
+
     input CLK, RESETN, BUTTON1, BUTTON2,
     output START,
     input DONE
@@ -54,17 +60,20 @@ module vcontroller#
     localparam UART_BASE = 32'h4060_0000;
     localparam UART_TX   = UART_BASE + 4;
 
+    reg recv_rden; assign RECV_RDEN = recv_rden;
+
     reg[3:0] state;
 
     always @(posedge CLK) begin
         amci_write <= 0;
+        recv_rden <= 0;
         if (RESETN == 0) begin
             state      <= 0;
             amci_waddr <= UART_TX;
         end else case(state)
 
         0:  if (BUTTON1) begin
-                amci_wdata <= "H";
+                amci_wdata <= "D";
                 amci_write <= 1;
                 state      <= state + 1;
             end
@@ -85,7 +94,6 @@ module vcontroller#
                 amci_write <= 1;
                 state      <= 0;
             end
-
         endcase
     end
 
